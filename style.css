@@ -1,0 +1,270 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEEEEE;
+}
+
+.head-bar {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222831;
+}
+
+.head-bar > h1 {
+    color: #00ADB5;
+}
+
+main {
+    margin-top: 2%;
+    display: flex;
+    gap: 2%;
+}
+
+dialog {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    padding: 20px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-content > button {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #222831;
+    color: #00ADB5;
+    cursor: pointer;
+}
+
+.modal-content > button:hover {
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+    gap: 20px;
+}
+
+.add-book {
+    border: 3px solid black;
+    padding: 5%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEEEE;
+}
+
+.input-add {
+    display: flex;
+    flex-direction: column;
+    margin: 7px 0;
+    gap: 5px;
+}
+
+.input-add > input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid #00ADB5;
+}
+
+.input-add-inline {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.input-add-inline > label {
+    margin-left: 10px;
+}
+
+hr {
+    margin: 20px;
+    color: black;
+    background-color: black;
+}
+
+.add-book > button {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #222831;
+    color: #00ADB5;
+    cursor: pointer;
+}
+
+.add-book > button:hover {
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+.meme {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    border: 3px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.opsional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.opsional > p {
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.opsional > img {
+    height: 150px;
+    width: 185px;
+}
+
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 2%;
+    gap: 20px;
+}
+
+.right-tab-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-content {
+    border: 3px solid black;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+}
+
+.tab-content > h2 {
+    margin-bottom: 10px;
+}
+
+.tab-content .input-search {
+    display: flex;
+    margin: 7px 0;
+    gap: 10px;
+}
+
+.tab-content .input-search > button {
+    flex: 1;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #222831;
+    color: #00ADB5;
+    cursor: pointer;
+}
+
+.tab-content .input-search > button:hover {
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+.tab-content .input-search > input {
+    flex: 4;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid #00ADB5;
+}
+
+.table-list {
+    background-color: #FFFFFF;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 2px solid #00ADB5;
+    padding: 8px;
+    text-align: center;
+}
+
+.table-action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.table-action-buttons > button {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: #222831;
+    color: #00ADB5;
+    cursor: pointer;
+}
+
+.table-action-buttons > button:hover {
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+.tab-button {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.tab-button.active {
+    background-color: #222831;
+    color: #00ADB5;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#search-result {
+    margin-top: 30px;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#book-not-found > h2 {
+    margin-top: 30px;
+}
