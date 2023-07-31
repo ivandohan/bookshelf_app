@@ -142,6 +142,7 @@ const addBookData = () => {
 
 
 const searchBook = (keyword) => {
+    keyword = keyword.toLowerCase();
     for(const book of books) {
         if(book.bookTitle.toLowerCase().includes(keyword)) {
             book_search.push(book);
