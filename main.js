@@ -194,7 +194,7 @@ const makeBookAsDOM = (bookObject) => {
     if(bookObject.isAlreadyRead) {
         const undoButton = document.createElement('button');
         undoButton.classList.add('undo-button');
-        undoButton.innerText = "Undo";
+        undoButton.innerText = "Belum dibaca";
 
         undoButton.addEventListener('click', () => {
             undoBookFromAlreadyRead(bookObject.bookId);
@@ -216,7 +216,7 @@ const makeBookAsDOM = (bookObject) => {
     } else {
         const readButton = document.createElement('button');
         readButton.classList.add('read-button');
-        readButton.innerText = "Mark as Read";
+        readButton.innerText = "Sudah dibaca";
 
         readButton.addEventListener('click', () => {
             addBookAsAlreadyRead(bookObject.bookId);
