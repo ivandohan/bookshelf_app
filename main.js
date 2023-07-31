@@ -5,6 +5,7 @@ const RENDER_SEARCH_EVENT = 'search-render';
 const STORAGE_KEY = 'BOOKSHELF_APPS';
 const SAVED_EVENT = 'saved-book';
 
+let searchActivityCount = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('tab1').style.display = 'flex';
@@ -19,8 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitSearch = document.getElementById('submitSearchButton');
     submitSearch.addEventListener('click', (event) => {
         event.preventDefault();
+        searchActivityCount = 0;
         book_search.splice(0);
         searchBook(document.getElementById('searchBookByTitle').value);
+    });
+
+    const closeSuccessModalButton = document.getElementById('close-add-success-modal-button');
+    closeSuccessModalButton.addEventListener('click', () => {
+        document.getElementById('add-success-modal').close();
+    });
+
+    const closeFailModalButton = document.getElementById('close-delete-success-modal-button');
+    closeFailModalButton.addEventListener('click', () => {
+        document.getElementById('delete-success-modal').close();
+    });
+
+    const closeUpdateModalButton = document.getElementById('close-update-success-modal-button');
+    closeUpdateModalButton.addEventListener('click', () => {
+        document.getElementById('update-success-modal').close();
     });
 
     if (isStorageExist()) {
@@ -64,6 +81,8 @@ document.addEventListener(RENDER_EVENT, () => {
     tBodyforUnread.innerHTML = "";
     tBodyforAlreadyRead.innerHTML = "";
 
+    setNoBooksYetDiv();
+
     for(const book of books) {
         const bookDataElement = makeBookAsDOM(book);
         
@@ -80,23 +99,14 @@ document.addEventListener(RENDER_SEARCH_EVENT, () => {
         const notFoundDiv = document.getElementById('book-not-found');
         notFoundDiv.style.display = "flex";
 
-        const notFoundMessage = document.createElement('h2');
-        notFoundMessage.innerHTML = "";
-
-        notFoundMessage.innerText = `Buku dengan kata kunci tersebut tidak ditemukan :(`;
-        notFoundDiv.appendChild(notFoundMessage);
-
         document.getElementById('search-result').style.display = "none";
-        return
+        return;
     } else {
         const tBodyforSearchResult = document.getElementById('tBody-searchResult');
         tBodyforSearchResult.innerHTML = "";
 
         const notFoundDiv = document.getElementById('book-not-found');
         notFoundDiv.style.display = "none";
-
-        const notFoundMessage = document.createElement('h2');
-        notFoundMessage.innerHTML = "";
 
         document.getElementById('search-result').style.display = "flex";
         for(const book of book_search) {
@@ -133,6 +143,8 @@ const addBookData = () => {
 
     saveData();
 
+    document.getElementById('add-success-modal').showModal();
+
     if(isAlreadyRead) {
         openTab('tab2', null, 'tbtn-alreadyRead');
     } else {
@@ -142,6 +154,7 @@ const addBookData = () => {
 
 
 const searchBook = (keyword) => {
+    searchActivityCount++;
     keyword = keyword.toLowerCase();
     for(const book of books) {
         if(book.bookTitle.toLowerCase().includes(keyword)) {
@@ -263,7 +276,12 @@ const addBookAsAlreadyRead = (id) => {
 
     target.isAlreadyRead= true;
     document.dispatchEvent(new Event(RENDER_EVENT));
-    document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+
+    if(searchActivityCount != 0) {
+        document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+    }
+
+    document.getElementById('update-success-modal').showModal();
 
     saveData();
 }
@@ -275,7 +293,12 @@ const undoBookFromAlreadyRead = (id) => {
 
     target.isAlreadyRead = false;
     document.dispatchEvent(new Event(RENDER_EVENT));
-    document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+
+    if(searchActivityCount != 0) {
+        document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+    }
+
+    document.getElementById('update-success-modal').showModal();
 
     saveData();
 }
@@ -291,7 +314,12 @@ const removeBookFromList = (id) => {
     if(searchTarget != -1) book_search.splice(searchTarget, 1);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
-    document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+
+    if(searchActivityCount != 0) {
+        document.dispatchEvent(new Event(RENDER_SEARCH_EVENT));
+    }
+
+    document.getElementById('delete-success-modal').showModal();
 
     saveData();
 }
@@ -300,7 +328,33 @@ const removeBookFromList = (id) => {
 
 
 
+const setNoBooksYetDiv = () => {
+    let unreadCount = 0;
+    let alreadyReadCount = 0;
+    for(const book of books) {
+        if(book.isAlreadyRead) {
+            alreadyReadCount++;
+        } else {
+            unreadCount++;
+        }
+    }
 
+    if(unreadCount === 0) {
+        document.getElementById('unread-table').style.display = "none";
+        document.getElementById('no-unread-books-yet').style.display = "block";
+    } else {
+        document.getElementById('unread-table').style.display = "block";
+        document.getElementById('no-unread-books-yet').style.display = "none";
+    }
+    
+    if(alreadyReadCount === 0) {
+        document.getElementById('alreadyRead-table').style.display = "none";
+        document.getElementById('no-alreadyRead-books-yet').style.display = "block";
+    } else {
+        document.getElementById('alreadyRead-table').style.display = "block";
+        document.getElementById('no-alreadyRead-books-yet').style.display = "none";
+    }
+}
 
 const openTab = (tabName, eventTarget, buttonId) => {
     const tabContents = document.getElementsByClassName('tab-content');

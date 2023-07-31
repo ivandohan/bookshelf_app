@@ -12,11 +12,25 @@
     </header>
 
     <main>
-        <dialog id="myModal">
+        <dialog id="add-success-modal">
             <div class="modal-content">
-                <h2 id="modal-title">Ini adalah Judul Modal</h2>
-                <p id="modal-message">Ini adalah pesan modal.</p>
-                <button id="close-modal-button">Tutup</button>
+                <h2>Sukses</h2>
+                <p>Data berhasil disimpan.</p>
+                <button id="close-add-success-modal-button">Tutup</button>
+            </div>
+        </dialog>
+        <dialog id="delete-success-modal">
+            <div class="modal-content">
+                <h2>Sukses</h2>
+                <p>Data berhasil dihapus.</p>
+                <button id="close-delete-success-modal-button">Tutup</button>
+            </div>
+        </dialog>
+        <dialog id="update-success-modal">
+            <div class="modal-content">
+                <h2>Sukses</h2>
+                <p>Data berhasil diperbaharui.</p>
+                <button id="close-update-success-modal-button">Tutup</button>
             </div>
         </dialog>
         <section class="left-section">
@@ -65,7 +79,10 @@
 
             <div id="tab1" class="tab-content">
                 <h2>Daftar Buku</h2>
-                <div class="table-list">
+                <div id="no-unread-books-yet" style="display: none;">
+                    <h2>Belum ada buku terdaftar...</h2>
+                </div>
+                <div class="table-list" id="unread-table">
                     <table>
                         <thead>
                             <tr>
@@ -82,7 +99,10 @@
 
             <div id="tab2" class="tab-content" style="display: none;">
                 <h2>Daftar Buku</h2>
-                <div class="table-list">
+                <div id="no-alreadyRead-books-yet" style="display: none;">
+                    <h2>Belum ada buku terdaftar...</h2>
+                </div>
+                <div class="table-list" id="alreadyRead-table">
                     <table>
                         <thead>
                             <tr>
@@ -106,7 +126,9 @@
                     </div>
                 </form>
                 
-                <div id="book-not-found" style="display: none;"></div>
+                <div id="book-not-found" style="display: none;">
+                    <h2>Buku dengan kata kunci tersebut tidak dapat ditemukan :(</h2>
+                </div>
 
                 <div id="search-result" style="display: none;">
                     <h2>Hasil Pencarian</h2>
