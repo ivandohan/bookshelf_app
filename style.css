@@ -121,34 +121,6 @@ hr {
     color: #222831;
 }
 
-.meme {
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10%;
-    border: 3px solid black;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.opsional {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.opsional > p {
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
-
-.opsional > img {
-    height: 150px;
-    width: 185px;
-}
-
 .right-section {
     flex: 1;
     display: flex;
